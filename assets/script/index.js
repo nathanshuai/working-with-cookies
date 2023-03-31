@@ -1,13 +1,17 @@
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-  Introduction to third-party APIs
-  Andre Specht
-
-  Functions to set, get and delete cookies
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 'use strict';
+
+window.onload = function() {
+  dialog2.style.display = 'none';
+  setTimeout(function() {
+    dialog1.style.display = 'block';
+  }, 1000); // delay of 1 seconds
+  // Set the checkboxes to checked
+  browserCheckbox.checked = true;
+  osCheckbox.checked = true;
+  screenWidthCheckbox.checked = true;
+  screenHeightCheckbox.checked = true;
+};
 
 console.log(document.cookie ? 'Cookies available' : 'No cookies found');
 
@@ -51,13 +55,6 @@ function getCookie(name) {
 function deleteCookie(name) {
   setCookie(name, '', {'max-age': -1});
 }
-
-
-
-const date = new Date();
-date.setSeconds(date.getSeconds() + 10);
-
-
 
 // deleteCookie('name');
 
@@ -112,17 +109,7 @@ const osCheckbox = document.querySelector('#os');
 const screenWidthCheckbox = document.querySelector('#sw');
 const screenHeightCheckbox = document.querySelector('#sh');
 
-window.onload = function() {
-  dialog2.style.display = 'none';
-  setTimeout(function() {
-    dialog1.style.display = 'block';
-  }, 1000); // delay of 1 seconds
-  // Set the checkboxes to checked
-  browserCheckbox.checked = true;
-  osCheckbox.checked = true;
-  screenWidthCheckbox.checked = true;
-  screenHeightCheckbox.checked = true;
-};
+
 
 dialog1AcceptBtn.addEventListener('click', () => {
   dialog1.style.display = 'none';
@@ -145,8 +132,6 @@ dialog1SettingsBtn.addEventListener('click', () => {
 
 dialog2SaveBtn.addEventListener('click', () => {
   dialog2.style.display = 'none';
-
-
 
   if (browserCheckbox.checked) {
     setCookie('Browser', getBrowserName(), {'max-age': 15});
