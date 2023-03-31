@@ -1,0 +1,158 @@
+@import url(./reset.css);
+
+:root {
+  --app-dark-bg: #1a1d28;
+  --app-green: #33ab4e;
+  --app-purple: #833cff;
+  --app-orange: #e4854e;
+  --app-blue: #3c57ff;
+  --app-blue-hover: #364ee6;
+  --app-red: #ff3c57;
+  --app-red-hover: #ff2846;
+}
+
+/* banner*/
+
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.container img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+p {
+  width: min(100% - 30px,1080px);
+  color: var(--app-purple);
+  font-size: 30px;
+  z-index: 1;
+}
+
+p span {
+  color: #fff;
+  font-size: larger;
+}
+
+.container-dialog::backdrop {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.container-dialog {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.dialog-content p , h2{
+  color: #1a1d28;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 28px;
+}
+/*button */
+
+button  {
+  margin-top: 50px;
+  margin-right: 26px;
+  width: 150px;
+  height: 55px;
+  border-radius: 30px;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition:  all 0.25s ease-in-out;
+  cursor: pointer;
+  background-color: var(--app-orange);
+}
+
+button:hover {
+  border: var(--app-blue-hover) solid 3px;
+}
+
+.dialog1-settings-btn {
+  background-color: #33ab4e;
+}
+
+
+/*dialog2*/
+.switch {
+  margin-bottom: 4px;
+  margin-left: 40px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  vertical-align: middle;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.switch-label {
+  margin-right: -150px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+
