@@ -1,17 +1,6 @@
 
 'use strict';
 
-window.onload = function() {
-  dialog2.style.display = 'none';
-  setTimeout(function() {
-    dialog1.style.display = 'block';
-  }, 1000); // delay of 1 seconds
-  // Set the checkboxes to checked
-  browserCheckbox.checked = true;
-  osCheckbox.checked = true;
-  screenWidthCheckbox.checked = true;
-  screenHeightCheckbox.checked = true;
-};
 
 console.log(document.cookie ? 'Cookies available' : 'No cookies found');
 
@@ -65,6 +54,29 @@ const dialog1SettingsBtn = document.querySelector('.dialog1-settings-btn');
 const dialog2 = document.getElementById('dialog2');
 const dialog2SaveBtn = document.querySelector('.dialog2-save-btn');
 
+const dialog =document.querySelector('dialog');
+
+window.onload = function() {
+  dialog2.close();
+  setTimeout(function() {
+    dialog1.showModal();
+  }, 1000); // delay of 1 seconds
+  // Set the checkboxes to checked
+  browserCheckbox.checked = true;
+  osCheckbox.checked = true;
+  screenWidthCheckbox.checked = true;
+  screenHeightCheckbox.checked = true;
+};
+
+dialog.addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+
+  if (e.clientY < rect.top || e.clientY > rect.bottom ||
+    e.clientX < rect.left || e.clientX > rect.right) {
+      dialog.close();
+    }
+});
+
 function getBrowserName() {
   const userAgent = navigator.userAgent;
   let browserName;
@@ -112,7 +124,7 @@ const screenHeightCheckbox = document.querySelector('#sh');
 
 
 dialog1AcceptBtn.addEventListener('click', () => {
-  dialog1.style.display = 'none';
+  dialog1.close();
   setCookie('Browser', getBrowserName(), {'max-age': 15});
   document.cookie = `Operating system=${getOSName()}; path=/; max-age=15; SameSite=Lax`;
   document.cookie = `Screen width=${screenWidth}; path=/; max-age=15; SameSite=Lax`;
@@ -126,12 +138,12 @@ console.log(`Screen height:${getCookie('Screen height')}`);
 
 
 dialog1SettingsBtn.addEventListener('click', () => {
-  dialog1.style.display = 'none';
-  dialog2.style.display = 'block';
+  dialog1.close();
+  dialog2.showModal();
 });
 
 dialog2SaveBtn.addEventListener('click', () => {
-  dialog2.style.display = 'none';
+  dialog2.close();
 
   if (browserCheckbox.checked) {
     setCookie('Browser', getBrowserName(), {'max-age': 15});
@@ -146,6 +158,7 @@ dialog2SaveBtn.addEventListener('click', () => {
     document.cookie = `Screen height=${screenHeight}; path=/; max-age=15; SameSite=Lax`;
   }
 });
+
 
 
 

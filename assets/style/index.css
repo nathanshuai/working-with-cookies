@@ -41,25 +41,30 @@ p span {
   font-size: larger;
 }
 
-.container-dialog::backdrop {
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-}
 
-.container-dialog {
+
+dialog {
+  margin: auto;
   width: 400px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding: 19px 25px 24px 25px;
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 2;
+  animation: 0.25s linear anim;
 }
 
-.dialog-content p , h2{
+@keyframes anim {
+  from {
+    opacity: 0;
+    translate:0 -8px;
+  } to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.dialog-content p, h2{
   color: #1a1d28;
   font-size: 20px;
   font-weight: 500;
@@ -70,11 +75,17 @@ h2 {
   font-weight: 800;
   font-size: 28px;
 }
+
+dialog::backdrop {
+  background-color: rgba(13, 16, 19, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
 /*button */
 
 button  {
   margin-top: 50px;
-  margin-right: 26px;
+  margin-right: 15px;
   width: 150px;
   height: 55px;
   border-radius: 30px;
